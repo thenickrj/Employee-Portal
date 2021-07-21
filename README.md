@@ -19,7 +19,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   ### 3.) Updating the Employee Details
   ### 4.) Deletion of the Employee Details
   ### 5.) Search Functionality according to the name of the employee
-  ### 6.) Unique employee id generated in the database itselft
+  ### 6.) Unique id for each employee generated in the database itself
 
 ## Features Missed out:
 
