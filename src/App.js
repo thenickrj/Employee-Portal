@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Employees from "./components/Employees";
+import "bootstrap/dist/css/bootstrap.min.css";
+import EditEmployees from "./components/EditEmployees";
+import AddEmployees from "./components/AddEmployees";
+import ReactNotification from "react-notifications-component";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <ReactNotification />
+      <Router>
+        <Route path="/s">HLLO</Route>
+        <Route path="/" exact component={Employees} />
+        <Route path="/edit/:id" exact component={EditEmployees} />
+        <Route path="/add" exact component={AddEmployees} />
+      </Router>
+      {/* <Employees /> */}
     </div>
   );
 }

@@ -1,0 +1,38 @@
+.salary_input {
+  width: 30%;
+  margin-left: 4%;
+}
+
+.name_input {
+  width: 30%;
+  margin-left: 18%;
+}
+
+.address_input {
+  margin: auto;
+  width: 64%;
+}
+
+.team_input {
+  margin: auto;
+  width: 64%;
+}
+
+.error_input {
+  width: 60%;
+  margin: auto;
+}
+.gender_input {
+  /* margin-left: 18%; */
+  /* width: 64%; */
+}
+.top_input {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit_button {
+  width: 10%;
+  margin: auto;
+  background: lightblue;
+}
