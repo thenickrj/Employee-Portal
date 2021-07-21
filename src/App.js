@@ -11,7 +11,6 @@ function App() {
     <div className="container">
       <ReactNotification />
       <Router>
-        <Route path="/s">HLLO</Route>
         <Route path="/" exact component={Employees} />
         <Route path="/edit/:id" exact component={EditEmployees} />
         <Route path="/add" exact component={AddEmployees} />
