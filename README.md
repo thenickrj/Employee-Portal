@@ -1,7 +1,7 @@
 # Project Employee Portal 
 
 
-## Tech Stack Used:
+## Tech Stack Used :
 
 ### `ReactJS` - FrontEnd 
 
