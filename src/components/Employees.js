@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { store } from "react-notifications-component";
+import Pagination from "./Pagination";
 
 const Employee = (props) => (
   <tr>
@@ -38,6 +39,8 @@ function Employees() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchEmployees, setSearchEmployees] = useState([]);
   const [search, setSearch] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [employeesPerPage, setEmployeesPerPage] = useState(5);
 
   //get the details of all the employees
   useEffect(() => {
@@ -66,6 +69,7 @@ function Employees() {
     }
     console.log(searchEmployees);
   }, [searchTerm]);
+
   const notifyDelete = () => {
     store.addNotification({
       title: "Success!",
@@ -82,19 +86,18 @@ function Employees() {
       },
     });
   };
+
   function deleteEmployee(id) {
     axios.delete("http://localhost:5000/employees/" + id).then((response) => {
       console.log(response.data);
       notifyDelete();
     });
 
-    // this.setState({
-    //   exercises: this.state.exercises.filter((el) => el._id !== id),
-    // });
     setEmployees(employees.filter((el) => el._id !== id));
   }
+
   function employeeList() {
-    return employees.map((employee) => {
+    return currentEmployees.map((employee) => {
       return (
         <Employee
           employee={employee}
@@ -115,6 +118,15 @@ function Employees() {
       );
     });
   }
+
+  const indexOfLastEmployee = currentPage * employeesPerPage;
+  const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
+  const currentEmployees = employees.slice(
+    indexOfFirstEmployee,
+    indexOfLastEmployee
+  );
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
       {/* {employees.map((employee)=>{<div>{console.log(employee)}
@@ -168,6 +180,11 @@ function Employees() {
           <div>{employee.gender}</div>
         </div>
       ))} */}
+      <Pagination
+        employeesPerPage={employeesPerPage}
+        totalEmployees={employees.length}
+        paginate={paginate}
+      />
       <Link to="/add" className="nav-link" style={{ textDecoration: "none" }}>
         Add Employee!
       </Link>
