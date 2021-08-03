@@ -18,11 +18,8 @@
   ### 3.) Updating the Employee Details
   ### 4.) Deletion of the Employee Details
   ### 5.) Search Functionality according to the name of the employee
-  ### 6.) Unique id for each employee generated in the database itself
-
-## Features Missed out:
-
-  ### Pagination
+  ### 6.) Pagination Functionality
+  ### 7.) Unique id for each employee generated in the database itself
 
 
 ## Extra Feature Added:
