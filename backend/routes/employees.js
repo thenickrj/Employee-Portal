@@ -8,6 +8,30 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/size").get((req, res) => {
+  Employee.find()
+    .then((employees) => res.json(employees.length))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+router.route("/search/:val1").get((req, res) => {
+  console.log(req.params.val1);
+  let name = String(req.params.val1);
+  Employee.find({ name: { $regex: name, $options: "i" } })
+    .then((employees) => res.json(employees))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+router.route("/page=:id").get((req, res) => {
+  Employee.find()
+    .skip((parseInt(req.params.id) - 1) * 5)
+    .limit(5)
+    .then((employees) => {
+      res.json(employees);
+    })
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
 router.route("/add").post((req, res) => {
   // const id = Number(req.body.id);
   const name = req.body.name;

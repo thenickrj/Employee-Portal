@@ -38,16 +38,39 @@ function Employees() {
   const [employees, setEmployees] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchEmployees, setSearchEmployees] = useState([]);
+  const [allEmployees, setAllEmployees] = useState([]);
   const [search, setSearch] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [size, setSize] = useState(0);
   const [employeesPerPage, setEmployeesPerPage] = useState(5);
 
   //get the details of all the employees
   useEffect(() => {
-    fetch("http://localhost:5000/employees")
+    fetch("http://localhost:5000/employees/")
+      .then((response) => response.json())
+      .then((data) => {
+        setAllEmployees(data);
+        // console.log(employees.length);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    fetch("http://localhost:5000/employees/page=1")
       .then((response) => response.json())
       .then((data) => {
         setEmployees(data);
+        // console.log(employees.length);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    fetch("http://localhost:5000/employees/size")
+      .then((response) => response.json())
+      .then((data) => {
+        setSize(data);
+        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -57,11 +80,12 @@ function Employees() {
   //   Notification Popup on completion of the task
   useEffect(() => {
     setSearchEmployees(
-      employees.filter((employee) => {
+      allEmployees.filter((employee) => {
         console.log(employee);
         return employee.name.toLowerCase().includes(searchTerm.toLowerCase());
       })
     );
+
     if (searchTerm !== "") {
       setSearch(true);
     } else if (searchTerm === "") {
@@ -97,7 +121,7 @@ function Employees() {
   }
 
   function employeeList() {
-    return currentEmployees.map((employee) => {
+    return employees.map((employee) => {
       return (
         <Employee
           employee={employee}
@@ -119,13 +143,26 @@ function Employees() {
     });
   }
 
-  const indexOfLastEmployee = currentPage * employeesPerPage;
-  const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-  const currentEmployees = employees.slice(
-    indexOfFirstEmployee,
-    indexOfLastEmployee
-  );
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // const indexOfLastEmployee = currentPage * employeesPerPage;
+  // const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
+  // const currentEmployees = employees.slice(
+  //   indexOfFirstEmployee,
+  //   indexOfLastEmployee
+  // );
+
+  // const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  function paginate(number) {
+    fetch("http://localhost:5000/employees/page=" + number)
+      .then((response) => response.json())
+      .then((data) => {
+        setEmployees(data);
+        // console.log(employees.length);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <div>
@@ -184,6 +221,7 @@ function Employees() {
         employeesPerPage={employeesPerPage}
         totalEmployees={employees.length}
         paginate={paginate}
+        size={size}
       />
       <Link to="/add" className="nav-link" style={{ textDecoration: "none" }}>
         Add Employee!
