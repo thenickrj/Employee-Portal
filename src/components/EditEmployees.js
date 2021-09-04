@@ -22,7 +22,10 @@ function EditEmployees(props) {
 
   //   GEtting the details of the employee whose values are to be updated
   useEffect(() => {
-    fetch("http://localhost:5000/employees/" + props.match.params.id)
+    fetch(
+      "https://quiet-reaches-98658.herokuapp.com/employees/" +
+        props.match.params.id
+    )
       .then((response) => response.json())
       .then((data) => {
         setData(data);
@@ -101,7 +104,8 @@ function EditEmployees(props) {
       console.log(data);
       axios
         .post(
-          "http://localhost:5000/employees/update/" + props.match.params.id,
+          "https://quiet-reaches-98658.herokuapp.com/employees/update/" +
+            props.match.params.id,
           data
         )
         .then((res) => {

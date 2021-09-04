@@ -46,7 +46,7 @@ function Employees() {
 
   //get the details of all the employees
   useEffect(() => {
-    fetch("http://localhost:5000/employees/")
+    fetch("https://quiet-reaches-98658.herokuapp.com/employees/")
       .then((response) => response.json())
       .then((data) => {
         setAllEmployees(data);
@@ -56,7 +56,7 @@ function Employees() {
         console.log(err);
       });
 
-    fetch("http://localhost:5000/employees/page=1")
+    fetch("https://quiet-reaches-98658.herokuapp.com/employees/page=1")
       .then((response) => response.json())
       .then((data) => {
         setEmployees(data);
@@ -66,11 +66,11 @@ function Employees() {
         console.log(err);
       });
 
-    fetch("http://localhost:5000/employees/size")
+    fetch("https://quiet-reaches-98658.herokuapp.com/employees/size")
       .then((response) => response.json())
       .then((data) => {
         setSize(data);
-        console.log(data);
+        // console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -81,7 +81,7 @@ function Employees() {
   useEffect(() => {
     setSearchEmployees(
       allEmployees.filter((employee) => {
-        console.log(employee);
+        // console.log(employee);
         return employee.name.toLowerCase().includes(searchTerm.toLowerCase());
       })
     );
@@ -91,7 +91,7 @@ function Employees() {
     } else if (searchTerm === "") {
       setSearch(false);
     }
-    console.log(searchEmployees);
+    // console.log(searchEmployees);
   }, [searchTerm]);
 
   const notifyDelete = () => {
@@ -112,10 +112,12 @@ function Employees() {
   };
 
   function deleteEmployee(id) {
-    axios.delete("http://localhost:5000/employees/" + id).then((response) => {
-      console.log(response.data);
-      notifyDelete();
-    });
+    axios
+      .delete("https://quiet-reaches-98658.herokuapp.com/employees/" + id)
+      .then((response) => {
+        // console.log(response.data);
+        notifyDelete();
+      });
 
     setEmployees(employees.filter((el) => el._id !== id));
   }
@@ -153,7 +155,7 @@ function Employees() {
   // const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   function paginate(number) {
-    fetch("http://localhost:5000/employees/page=" + number)
+    fetch("https://quiet-reaches-98658.herokuapp.com/employees/page=" + number)
       .then((response) => response.json())
       .then((data) => {
         setEmployees(data);

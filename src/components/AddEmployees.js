@@ -88,10 +88,12 @@ function AddEmployees() {
         address: address,
       };
       console.log(data);
-      axios.post("http://localhost:5000/employees/add", data).then((res) => {
-        console.log(res.data);
-        notifyPopup();
-      });
+      axios
+        .post("https://quiet-reaches-98658.herokuapp.com/employees/add", data)
+        .then((res) => {
+          console.log(res.data);
+          notifyPopup();
+        });
 
       console.log("YAYAY");
     }
