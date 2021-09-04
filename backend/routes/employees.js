@@ -2,13 +2,13 @@ const router = require("express").Router();
 let Employee = require("../models/employee.model");
 // id,name,salary,gender,team,address
 
-router.route("/").get((req, res) => {
+router.route("*/").get((req, res) => {
   Employee.find()
     .then((employees) => res.json(employees))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/size").get((req, res) => {
+router.route("*/size").get((req, res) => {
   Employee.find()
     .then((employees) => res.json(employees.length))
     .catch((err) => res.status(400).json("Error: " + err));
