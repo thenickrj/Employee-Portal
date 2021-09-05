@@ -20,15 +20,14 @@
   ### 5.) Search Functionality according to the name of the employee
   ### 6.) Pagination Functionality
   ### 7.) Unique id for each employee generated in the database itself
+  ### 8.) Notification Popup on completion of the task
 
+## Deployed Link of the application.
 
-## Extra Feature Added:
-
-  ### Notification Popup on completion of the task
-
-
+  Link : https://employeeportal-app.netlify.app/
+  
 ## Screen Recording of the working application.
 
-  Updated Screen Recording with Pagination Functionality :https://www.loom.com/share/9b10d374af4b42a7b6307f009aa998ed
+  Link : https://www.loom.com/share/9b10d374af4b42a7b6307f009aa998ed
   
-  Old Recording : https://www.loom.com/share/4882d26cf1794058aade28c49600be7d
+  
