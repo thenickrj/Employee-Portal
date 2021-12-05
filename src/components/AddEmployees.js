@@ -93,6 +93,9 @@ function AddEmployees() {
         .then((res) => {
           console.log(res.data);
           notifyPopup();
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 2000);
         });
 
       console.log("YAYAY");

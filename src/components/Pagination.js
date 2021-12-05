@@ -13,7 +13,7 @@ function Pagination({ employeesPerPage, totalEmployees, paginate, size }) {
     <nav>
       <ul className="pagination">
         {sizeArray.map((number) => (
-          <li key={number} className="page-item">
+          <li key={number} style={{ cursor: "pointer" }} className="page-item">
             <a onClick={() => paginate(number + 1)} className="page-link">
               {number + 1}
             </a>
